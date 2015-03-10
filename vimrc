@@ -33,23 +33,19 @@ colorscheme molokai         " set colorscheme
 let g:molokai_original = 1  " use dark grey background
 let mapleader = "\<Space>"
 
-" /******************************************
-" * File types                              *
-" * Detect file types and set unknown ones. *
-" ******************************************/
-filetype off
-
 " /**********************************************
 " * Vundle                                      *
 " * Vundle, the plug-in manager for Vim.        *
 " * https://github.com/gmarik/Vundle.vim        *
 " **********************************************/
+
+filetype off        " filetype needs to be off before Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
     Plugin 'bling/vim-airline'
     Plugin 'Valloric/YouCompleteMe'
-    Plugin 'gmarik/Vundle.vim'  " Let Vundle manage Vundle.
+    Plugin 'gmarik/Vundle.vim'  " let Vundle manage Vundle
     Plugin 'honza/vim-snippets'
     Plugin 'SirVer/ultisnips'
     Plugin 'jistr/vim-nerdtree-tabs'
@@ -58,6 +54,11 @@ call vundle#begin()
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
 call vundle#end()
+
+" /******************************************
+" * File types                              *
+" * Detect file types and set unknown ones. *
+" ******************************************/
 
 filetype on
 filetype plugin on
@@ -100,7 +101,7 @@ endif
 " **********************************************/
 autocmd VimEnter * NERDTree     " Open NERDTree when vim is launched
 autocmd VimEnter * wincmd p     " Move cursor to file being edited
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " automatically close nerdtree if it's the last thing open
 let g:nerdtree_tabs_open_on_console_startup = 1
 
 " /**********************************************
@@ -138,4 +139,4 @@ function! g:UltiSnips_Complete()
     return ""
 endfunction
 
-autocmd BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+autocmd bufenter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
