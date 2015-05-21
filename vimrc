@@ -9,13 +9,11 @@
 " ******************/
 set autoindent                  " auto-indent
 set backspace=indent,eol,start  " make backspace behave normally
-set clipboard^=unnamed          " share clipboard with mac
 set encoding=utf-8              " set vim's character encoding
 set expandtab                   " convert tabs to spaces        
 set ignorecase                  " ignore case when searching    
 set ls=2                        " show status line              
 set nobackup                    " don't create a backup file    
-set nocompatible                " use vim defaults
 set nofoldenable                " stop code folding
 set noswapfile                  " don't bother with .swp files either
 set number                      " show line number
@@ -24,7 +22,12 @@ set showmatch                   " hightlight search matches
 set smartindent                 " smart-indent
 set t_Co=256                    " use 256 colours
 set tabstop=4                   " number of spaces in tab       
-syntax on                       " turn on syntax highlighting   
+set textwidth=80                " set line width to 80 characters
+syntax on
+
+if $TMUX == ''
+    set clipboard=unnamed
+endif
 
 " /**********
 " * Colours *
@@ -32,6 +35,8 @@ syntax on                       " turn on syntax highlighting
 colorscheme molokai         " set colorscheme
 let g:molokai_original = 1  " use dark grey background
 let mapleader = "\<Space>"
+highlight LineNr ctermbg=none
+highlight LineNr ctermfg=237
 
 " /**********************************************
 " * Vundle                                      *
@@ -39,8 +44,9 @@ let mapleader = "\<Space>"
 " * https://github.com/gmarik/Vundle.vim        *
 " **********************************************/
 
-filetype off        " filetype needs to be off before Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
+set nocompatible                    " use vim defaults
+filetype off                        " filetype needs to be off before Vundle
+set rtp+=~/.vim/bundle/Vundle.vim   " set the runtime path to include Vundle and initialize
 
 call vundle#begin()
     Plugin 'bling/vim-airline'
@@ -53,17 +59,15 @@ call vundle#begin()
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
+    Plugin 'ryanoasis/vim-webdevicons'
 call vundle#end()
+
+filetype plugin indent on           " required
 
 " /******************************************
 " * File types                              *
 " * Detect file types and set unknown ones. *
 " ******************************************/
-
-filetype on
-filetype plugin on
-filetype plugin indent on
-
 autocmd BufRead,BufNewFile *.feature set filetype=ruby
 autocmd BufRead,BufNewFile *.handlebars set filetype=html
 autocmd BufRead,BufNewFile *.hbs set filetype=html
@@ -112,6 +116,8 @@ let g:nerdtree_tabs_open_on_console_startup = 1
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_php_checkers = ['php', 'phpcs']
 let g:syntastic_php_phpcs_args="--report=csv --standard=PSR2"
+
+let g:webdevicons_conceal_nerdtree_brackets = 0
 
 " /***************
 " * Key Mappings *
