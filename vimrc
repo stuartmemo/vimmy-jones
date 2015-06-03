@@ -85,6 +85,8 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
+autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL
+
 " /******************************************************
 " * The Silver Searcher                                 *
 " * A code-searching tool similar to ack, but faster.   *
@@ -116,8 +118,6 @@ let g:nerdtree_tabs_open_on_console_startup = 1
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_php_checkers = ['php', 'phpcs']
 let g:syntastic_php_phpcs_args="--report=csv --standard=PSR2"
-
-let g:webdevicons_conceal_nerdtree_brackets = 0
 
 " /***************
 " * Key Mappings *
