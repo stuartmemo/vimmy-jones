@@ -4,7 +4,7 @@ My vim config and plugins
 Clone repo
 ----------
 ```shell
-git clone git@github.com:stuartmemo/vimto.git ~/.vim
+git clone git@github.com:stuartmemo/vimmy-jones.git ~/.vim
 ```
 
 Create symlinks
