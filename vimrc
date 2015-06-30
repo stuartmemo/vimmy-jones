@@ -85,7 +85,11 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
+" /***********************
+" * NERDTree WebDevIcons *
+" ************************/
 autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL
+let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
 
 " /******************************************************
 " * The Silver Searcher                                 *
