@@ -12,6 +12,7 @@ Create symlinks
 ```shell
 ln -s ~/.vim/vimrc ~/.vimrc
 ln -s ~/.vim/viminfo ~/.viminfo
+ln -s ~/.vim/tmux.conf ~/.tmux.conf
 ```
 
 Install submodules
